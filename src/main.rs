@@ -46,19 +46,19 @@ async fn get_comments_for_sub_reddit(subreddit_name: &str) {
     while let Some(comment) = stream.next().await {
         // `comment` is an `Err` if getting the latest comments
         // from Reddit failed even after retrying.
+        if comment.is_err() {
+            println!(
+                "got comment error {} - sleeping for 2 seconds sr-name {}",
+                comment.err().unwrap().to_string(),
+                subreddit_name
+            );
+            tokio::time::sleep(Duration::from_secs(5)).await;
+            continue;
+        }
+
         let c = comment.unwrap();
 
         println!("got comment {:?}", c);
-
-        // if comment.is_err() {
-        //     println!(
-        //         "got comment error {} - sleeping for 2 seconds sr-name {}",
-        //         comment.err().unwrap().to_string(),
-        //         subreddit_name
-        //     );
-        //     tokio::time::sleep(Duration::from_secs(5)).await;
-        //     continue;
-        // }
 
     }
 
