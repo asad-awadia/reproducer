@@ -1,0 +1,19 @@
+[package]
+name = "reproducer-reddit-comments"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+serde_json = "*"
+serde = "*"
+roux = "2.2.7"
+rust-crypto = "0.2.36"
+roux-stream = "0.2.0"
+futures-util = "*"
+async-trait = "0.1.51"
+futures = "0.3.19"
+log = "0.4.14"
+tokio = { version = "1.15.0", features = ["full"] }
+tokio-retry = "0.3.0"
+async-std = { version = "1", features = ["attributes", "tokio1"] }
